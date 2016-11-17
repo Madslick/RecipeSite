@@ -1,0 +1,65 @@
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+html, body{
+    background-color: #f4f4f4;
+    height: 100%;
+    overflow:hidden;
+}
+.canvas{
+    background-color: #ffffff;
+    margin: 20px;
+    min-height: 100%;
+    height: auto;
+    overflow: auto;
+}
+
+.tile{
+    margin: 100px;
+    background-color: #fafafa;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+
+
+}
+
+.recipe_form {
+    display: inline-block;
+}
+#title{
+    padding-top: 10%;
+    text-align:center;
+    font-size: 24px;
+}
+
+#search_div{
+    margin-top: 25px;
+    text-align: center;
+}
+
+#search_box{
+    border-color: black;
+    border: 1px solid rgb(185, 185, 185);
+    width: 230px;
+    height: 20px;
+}

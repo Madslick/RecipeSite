@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for row in results %}
+        {% for name in row %}
+            <div class="tile">
+                <p>{{ name }}</p>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <script src="/static/js/build_result_tiles.js"></script>
+{% endblock %}

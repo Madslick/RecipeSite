@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="recipe_form">
+        <form method=post action="/insert_recipe">
+            <label>
+                Title:
+                <input type="text">
+            </label>
+
+            <br>
+
+            <label id="ingredients">
+                Ingredient:
+                <input id="" type="text">
+            </label>
+
+            <input type="button" onclick="add_ingredient()"/>
+
+            <br>
+
+            <label id="instructions">
+                Instructions:
+                <input type="text">
+            </label>
+
+            <input type="button" onclick="add_instruction()"/>
+
+        </form>
+    </div>
+
+    <script src="/static/js/add_inputs.js"></script>
+{% endblock %}
