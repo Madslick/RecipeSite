@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class="recipe_form">
-        <form method=post action="/insert_recipe">
+        <form method="POST" action="{{ url_for('insert_recipe') }}">
             <label>
                 Title:
                 <input type="text">
@@ -21,11 +21,11 @@
 
             <label id="instructions">
                 Instructions:
-                <input type="text">
+                <input type="text" name="instruction">
             </label>
 
             <input type="button" onclick="add_instruction()"/>
-
+            <button type="submit">go!</button>
         </form>
     </div>
 

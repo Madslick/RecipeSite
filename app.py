@@ -1,5 +1,7 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request, redirect
+from flask import url_for
 from flaskext.mysql import MySQL
+
 
 app = Flask(__name__)
 mysql = MySQL()
@@ -18,6 +20,10 @@ def main():
 
     return render_template("index.html", Title="Kira's Recipes")
 
+@app.route("/insert_recipe", methods=["POST", "GET"])
+def insert_recipe():
+    return redirect(url_for('main'))
+
 @app.route("/input_recipe", methods=["POST", "GET"])
 def input_recipe():
 
@@ -30,10 +36,7 @@ def recipes():
     cursor.execute("SELECT Title FROM Recipe WHERE Title LIKE %s", ('%' + user_input + '%'))
     results = cursor.fetchall()
 
-
     return render_template("recipe.html", Title="Kira's Recipes", results=results)
 
 if __name__ == '__main__':
-
-
     app.run()
