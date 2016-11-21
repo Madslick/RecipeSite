@@ -2,9 +2,11 @@
 {% block content %}
     {% for row in results %}
         {% for name in row %}
-            <div class="tile">
-                <p>{{ name }}</p>
-            </div>
+            <a href="/read_recipe/{{name}}">
+                <div class="tile">
+                    <p name="recipe_title">{{ name }}</p>
+                </div>
+            </a>
         {% endfor %}
     {% endfor %}
     <script src="/static/js/build_result_tiles.js"></script>

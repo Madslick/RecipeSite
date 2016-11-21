@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h6> {{ recipe_title }}</h6>
+
+    <ul>
+    Proteins
+
+    {% for i in range(0, ingredients | length) %}
+        {% if ingredient_types[i] == 'Proteins' %}
+            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
+        {% endif %}
+    {% endfor %}
+
+    </ul>
+
+    <ul>
+    Grains/Rice
+    {% for i in range(0, ingredients | length) %}
+        {% if ingredient_types[i] == 'Grains/Rice' %}
+            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+
+    <ul>
+        Dry Ingredients
+    {% for i in range(0, ingredients | length) %}
+        {% if ingredient_types[i] == 'Dry Ingredients' %}
+            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+    <ul>
+        Wet Ingredients
+    {% for i in range(0, ingredients | length) %}
+        {% if ingredient_types[i] == 'Wet Ingredients' %}
+            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+    <ul>
+        Oils
+    {% for i in range(0, ingredients | length) %}
+        {% if ingredient_types[i] == 'Oils' %}
+            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+    <ul>
+        Seasoning/Spices
+    {% for i in range(0, ingredients | length) %}
+        {% if ingredient_types[i] == 'Seasoning/Spices' %}
+            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+    <ul>
+        Instructions
+    {% for instruction in instructions %}
+        <li>{{ instruction }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

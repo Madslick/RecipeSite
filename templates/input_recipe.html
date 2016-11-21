@@ -5,23 +5,33 @@
         <form method="POST" action="{{ url_for('insert_recipe') }}">
             <label>
                 Title:
-                <input type="text">
+                <input type="text" name="title" placeholder="Filet Mignon"/>
             </label>
 
             <br>
 
             <label id="ingredients">
+                Amount:
+                <input type="text" name="amount0" placeholder="3 cups"/>
                 Ingredient:
-                <input id="" type="text">
+                <input type="text" name="ingredient0" placeholder="Tofu"/>
+                <select name="ingr_type0">
+                    <option value="1">Proteins</option>
+                    <option value="2">Grains/Rice</option>
+                    <option value="3">Dry Ingredients</option>
+                    <option value="4">Wet Ingredients</option>
+                    <option value="5">Oils</option>
+                    <option value="6">Seasoning/Spices</option>
+                </select>
             </label>
 
-            <input type="button" onclick="add_ingredient()"/>
+            <input type="button" value="Add Ingredient" onclick="add_ingredient()"/>
 
             <br>
 
             <label id="instructions">
                 Instructions:
-                <input type="text" name="instruction">
+                <input type="text" name="instruction0"/>
             </label>
 
             <input type="button" onclick="add_instruction()"/>
