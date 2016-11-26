@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <div class="recipe_form">
+    <div class="container">
         <form method="POST" action="{{ url_for('insert_recipe') }}">
             <label>
                 Title:
@@ -11,8 +11,6 @@
             <br>
 
             <label id="ingredients">
-                Amount:
-                <input type="text" name="amount0" placeholder="3 cups"/>
                 Ingredient:
                 <input type="text" name="ingredient0" placeholder="Tofu"/>
                 <select name="ingr_type0">
@@ -25,7 +23,7 @@
                 </select>
             </label>
 
-            <input type="button" value="Add Ingredient" onclick="add_ingredient()"/>
+            <input type="button" value="Add Ingredient" onclick="add_ingredient(); setIngredientFocus();"/>
 
             <br>
 
@@ -34,7 +32,7 @@
                 <input type="text" name="instruction0"/>
             </label>
 
-            <input type="button" onclick="add_instruction()"/>
+            <input type="button" onclick="add_instruction(); setInstructionFocus();"/>
             <button type="submit">go!</button>
         </form>
     </div>

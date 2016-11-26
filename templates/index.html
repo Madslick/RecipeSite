@@ -1,12 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
 
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1 id="title">Recipe Sesame</h1>
+            <p>This is a site of recipes used/curated by the great Kira Dawn Jones. <b>Caution:</b> recipes will be delicious and may cause great satisfaction!</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center" id="search_div">
+                <form method="get" action="{{ url_for('recipes') }}">
+                    <input class="form-control" id="search_box" type="text" name="search" placeholder="Peanut Butter Jelly">
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center top_offset20">
+                {% for row in results %}
+                    <a class="btn btn-default btn-lg" href="/read_recipe/{{ row[0] }}" role="button">{{ row[0] }}</a>
+                {% endfor %}
+            </div>
+            <div class="col-md-3"></div>
 
-    <h2 id="title">What do you feel like?</h2>
-    <div id="search_div">
-        <form method="get" action="{{ url_for('recipes') }}">
-            <input id="search_box" type="text" name="search" placeholder="Peanut Butter Jelly">
-        </form>
+
+
+
+        </div>
     </div>
-
 {% endblock %}

@@ -1,13 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% for row in results %}
-        {% for name in row %}
-            <a href="/read_recipe/{{name}}">
-                <div class="tile">
-                    <p name="recipe_title">{{ name }}</p>
-                </div>
-            </a>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Showing Results for "{{ query }}"</h1>
+        </div>
+        {% for i in range (0, results|length) %}
+            {% for name in results[i] %}
+                <a href="/read_recipe/{{name}}">
+                    <div class="tile">
+                        <p name="recipe_title">{{ i+1 }}) {{ name }}</p>
+                    </div>
+                </a>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+
+    </div>
     <script src="/static/js/build_result_tiles.js"></script>
 {% endblock %}

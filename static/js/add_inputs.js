@@ -1,29 +1,22 @@
 var ingred_num = 1;
 var ingr_dropdown_num = 1;
 var instr_num = 1;
-var amount_num = 1;
+
+var next_row;
 
 function add_ingredient(){
     var elem = document.getElementById("ingredients");
     elem.appendChild(document.createElement('br'));
-
-    var amount = document.createElement('input');
-    amount.type = "text";
-    amount.name = "amount" + amount_num;
-    amount.placeholder = "3 cups";
-    amount_num ++;
-
-    elem.appendChild(amount);
 
     var newIngredient = document.createElement('input');
     newIngredient.type = "text";
     newIngredient.name = "ingredient" + ingred_num;
     newIngredient.placeholder = "Tofu";
     ingred_num ++;
-
     elem.appendChild(newIngredient);
 
     var ingr_dropdown = document.createElement("select");
+    ingr_dropdown.id = "ingr_type" + ingr_dropdown_num;
     ingr_dropdown.name = "ingr_type" + ingr_dropdown_num;
     ingr_dropdown_num ++;
     elem.appendChild(ingr_dropdown);
@@ -60,8 +53,17 @@ function add_ingredient(){
     ingr_dropdown.appendChild(oils_option);
     ingr_dropdown.appendChild(seasoning_option);
 
+    next_row = newIngredient;
 
 };
+
+function setIngredientFocus(){
+    next_row.focus();
+}
+
+function setInstructionFocus(){
+    next_row.focus();
+}
 
 function add_instruction(){
     var elem = document.getElementById("instructions");
@@ -72,5 +74,7 @@ function add_instruction(){
     instr_num ++;
     elem.appendChild(document.createElement('br'));
     elem.appendChild(newInstruction);
+
+    next_row = newInstruction;
 
 };

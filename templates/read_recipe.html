@@ -1,69 +1,91 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h6> {{ recipe_title }}</h6>
+    <div class="container-fluid">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-xs-12 col-sm-8">
+                <div class="jumbotron">
+                    <h1 class="text-center"> {{ recipe_title }}</h1>
+                </div>
+                <div class="col-sm-4">
+                    <ul>
+                        <h3>Proteins</h3>
 
-    <ul>
-    Proteins
+                        {% for i in range(0, ingredients | length) %}
+                            {% if ingredient_types[i] == 'Proteins' %}
+                                <li>{{ ingredients[i] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
 
-    {% for i in range(0, ingredients | length) %}
-        {% if ingredient_types[i] == 'Proteins' %}
-            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
-        {% endif %}
-    {% endfor %}
+                <div class="col-sm-4">
+                    <ul>
+                        <h3>Grains/Rice</h3>
+                        {% for i in range(0, ingredients | length) %}
+                            {% if ingredient_types[i] == 'Grains/Rice' %}
+                                <li>{{ ingredients[i] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
 
-    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <ul>
+                        <h3>Dry Ingredients</h3>
+                        {% for i in range(0, ingredients | length) %}
+                            {% if ingredient_types[i] == 'Dry Ingredients' %}
+                                <li>{{ ingredients[i] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
 
-    <ul>
-    Grains/Rice
-    {% for i in range(0, ingredients | length) %}
-        {% if ingredient_types[i] == 'Grains/Rice' %}
-            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
 
+                <div class="col-sm-4">
+                    <ul>
+                        <h3>Wet Ingredients</h3>
+                        {% for i in range(0, ingredients | length) %}
+                            {% if ingredient_types[i] == 'Wet Ingredients' %}
+                                <li>{{ ingredients[i] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
 
-    <ul>
-        Dry Ingredients
-    {% for i in range(0, ingredients | length) %}
-        {% if ingredient_types[i] == 'Dry Ingredients' %}
-            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
+                <div class="col-sm-4">
+                    <ul>
+                        <h3>Oils</h3>
+                        {% for i in range(0, ingredients | length) %}
+                            {% if ingredient_types[i] == 'Oils' %}
+                                <li>{{ ingredients[i] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
 
-    <ul>
-        Wet Ingredients
-    {% for i in range(0, ingredients | length) %}
-        {% if ingredient_types[i] == 'Wet Ingredients' %}
-            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
+                <div class="col-sm-4">
+                    <ul>
+                        <h3>Seasoning/Spices</h3>
+                        {% for i in range(0, ingredients | length) %}
+                            {% if ingredient_types[i] == 'Seasoning/Spices' %}
+                                <li>{{ ingredients[i] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4 sidebar-offcanvas pull-right">
+                <div class="list-group">
+                    <ul class="instruction-list">
+                        <h2 class="text-center">Instructions</h2>
+                        {% for i in range (0, instructions | length) %}
+                            <li class="list-group-item {% if i == 0 %}active {% endif %}" >{{ instructions[i] }}</li>
 
-    <ul>
-        Oils
-    {% for i in range(0, ingredients | length) %}
-        {% if ingredient_types[i] == 'Oils' %}
-            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-
-    <ul>
-        Seasoning/Spices
-    {% for i in range(0, ingredients | length) %}
-        {% if ingredient_types[i] == 'Seasoning/Spices' %}
-            <li>{{ amounts[i] }} {{ ingredients[i] }}</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-
-    <ul>
-        Instructions
-    {% for instruction in instructions %}
-        <li>{{ instruction }}</li>
-    {% endfor %}
-    </ul>
-
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/instruction_switch_active.js"></script>
 {% endblock %}
