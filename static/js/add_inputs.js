@@ -6,20 +6,39 @@ var next_row;
 
 function add_ingredient(){
     var elem = document.getElementById("ingredients");
-    elem.appendChild(document.createElement('br'));
 
-    var newIngredient = document.createElement('input');
+    var space2div = document.createElement("div");
+    space2div.className = "col-sm-2";
+    elem.appendChild(space2div);
+
+    var space10div = document.createElement("div");
+    space10div.className = "col-sm-10";
+
+    var textSpan = document.createElement("span");
+    textSpan.className = "input-group-btn";
+
+    var newIngredient = document.createElement("input");
+    newIngredient.className = "form-control";
     newIngredient.type = "text";
     newIngredient.name = "ingredient" + ingred_num;
     newIngredient.placeholder = "Tofu";
     ingred_num ++;
-    elem.appendChild(newIngredient);
+
+    space10div.appendChild(textSpan);
+    textSpan.appendChild(newIngredient);
+    elem.appendChild(space10div);
+
+    var selectSpan = document.createElement("span");
+    selectSpan.className = "input-group-btn";
 
     var ingr_dropdown = document.createElement("select");
     ingr_dropdown.id = "ingr_type" + ingr_dropdown_num;
     ingr_dropdown.name = "ingr_type" + ingr_dropdown_num;
+    ingr_dropdown.className = "form-control";
     ingr_dropdown_num ++;
-    elem.appendChild(ingr_dropdown);
+
+    space10div.appendChild(selectSpan);
+    selectSpan.appendChild(ingr_dropdown);
 
     var protein_option = document.createElement("option");
     protein_option.value = "1";
@@ -68,12 +87,20 @@ function setInstructionFocus(){
 function add_instruction(){
     var elem = document.getElementById("instructions");
 
+    var space2div = document.createElement("div");
+    space2div.className = "col-sm-2";
+    elem.appendChild(space2div);
+
+    var space10div = document.createElement("div");
+    space10div.className = "col-sm-10";
+    elem.appendChild(space10div);
+
     var newInstruction = document.createElement('input');
     newInstruction.type = "text";
+    newInstruction.className = "form-control";
     newInstruction.name = "instruction" + instr_num;
     instr_num ++;
-    elem.appendChild(document.createElement('br'));
-    elem.appendChild(newInstruction);
+    space10div.appendChild(newInstruction);
 
     next_row = newInstruction;
 

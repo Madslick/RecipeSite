@@ -2,38 +2,68 @@
 {% block content %}
 
     <div class="container">
-        <form method="POST" action="{{ url_for('insert_recipe') }}">
-            <label>
-                Title:
-                <input type="text" name="title" placeholder="Filet Mignon"/>
-            </label>
 
-            <br>
+        <div class="jumbotron text-center">
+            <h1>Write up a Recipe!</h1>
+        </div>
 
-            <label id="ingredients">
-                Ingredient:
-                <input type="text" name="ingredient0" placeholder="Tofu"/>
-                <select name="ingr_type0">
-                    <option value="1">Proteins</option>
-                    <option value="2">Grains/Rice</option>
-                    <option value="3">Dry Ingredients</option>
-                    <option value="4">Wet Ingredients</option>
-                    <option value="5">Oils</option>
-                    <option value="6">Seasoning/Spices</option>
-                </select>
-            </label>
+        <form method="POST" class="form-horizontal" action="{{ url_for('insert_recipe') }}">
 
-            <input type="button" value="Add Ingredient" onclick="add_ingredient(); setIngredientFocus();"/>
+            <div class="form-group col-sm-10">
+                <label class="col-sm-2">Title</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" name="title" placeholder="Filet Mignon"/>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
 
-            <br>
+            <div class="col-sm-12">
+                <hr>
+            </div>
 
-            <label id="instructions">
-                Instructions:
-                <input type="text" name="instruction0"/>
-            </label>
+            <div class="form-group col-sm-10" id="ingredients">
+                <label class="col-sm-2">Ingredients:</label>
 
-            <input type="button" onclick="add_instruction(); setInstructionFocus();"/>
-            <button type="submit">go!</button>
+                <div class="col-sm-10">
+
+                    <span class="input-group-btn">
+                        <input type="text" class="form-control" name="ingredient0" placeholder="3 cups of Tofu"/>
+                    </span>
+                    <span class="input-group-btn">
+                        <select class="form-control" name="ingr_type0">
+                            <option value="1">Proteins</option>
+                            <option value="2">Grains/Rice</option>
+                            <option value="3">Dry Ingredients</option>
+                            <option value="4">Wet Ingredients</option>
+                            <option value="5">Oils</option>
+                            <option value="6">Seasoning/Spices</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                    <button class="btn btn-primary" type="button" onclick="add_ingredient(); setIngredientFocus();">Add Ingredient</button>
+            </div>
+
+            <div class="col-sm-12">
+                <hr>
+            </div>
+
+            <div class="form-group col-sm-10" id="instructions">
+                <label class="col-sm-2">Instructions:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" name="instruction0"/>
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="button" onclick="add_instruction(); setInstructionFocus();">Add Instruction</button>
+            </div>
+
+            <div class="col-sm-12">
+                <br>
+                <button class="btn btn-success" type="submit">Add Recipe</button>
+            </div>
         </form>
     </div>
 
