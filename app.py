@@ -118,8 +118,7 @@ def recipes():
     cursor.execute("SELECT Title FROM Recipe WHERE Title LIKE %s", ('%' + user_input + '%'))
     results = cursor.fetchall()
 
-    print len(results)
     return render_template("recipe.html", Title="Kira's Recipes", home=True, query=user_input, results=results)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
