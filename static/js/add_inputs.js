@@ -22,6 +22,7 @@ function add_ingredient(){
     newIngredient.type = "text";
     newIngredient.name = "ingredient" + ingred_num;
     newIngredient.placeholder = "Tofu";
+    newIngredient.maxLength = "180";
     ingred_num ++;
 
     space10div.appendChild(textSpan);
@@ -99,6 +100,7 @@ function add_instruction(){
     newInstruction.type = "text";
     newInstruction.className = "form-control";
     newInstruction.name = "instruction" + instr_num;
+    newInstruction.maxLength = "400";
     instr_num ++;
     space10div.appendChild(newInstruction);
 
