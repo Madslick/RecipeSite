@@ -125,10 +125,10 @@ def read_recipe(recipe_title):
         ingredient_types.append(row[1])
 
     #MySQL SELECT statement for the instructions
-    cursor.execute("SELECT Instruction FROM Recipe_Instructions "
+    results = query("SELECT Instruction FROM Recipe_Instructions "
                    "INNER JOIN Recipe ON Recipe_Instructions.RecipeId = Recipe.Id "
-                   "WHERE Recipe.Title = %s ORDER BY Recipe_Instructions.StepNumber ASC", (recipe_title))
-    results = cursor.fetchall()
+                   "WHERE Recipe.Title = %s ORDER BY Recipe_Instructions.StepNumber ASC", (recipe_title)).fetchall()
+
 
     #Put the instructions into the instructions array
     for row in results:
