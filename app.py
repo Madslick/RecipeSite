@@ -77,7 +77,7 @@ def insert_recipe():
         instructions.append(request.form['instruction' + str(i)])
 
     #Start the insertion of the title to the database
-    cursor.execute("INSERT INTO Recipe (Title) VALUES (%s)", (title))
+    query(("INSERT INTO Recipe (Title) VALUES (%s)", (title)))
     conn.commit()
 
     #Get the Primary key of the Recipe table row to link the ingredient and instruction rows
@@ -113,10 +113,10 @@ def read_recipe(recipe_title):
     instructions = []
 
     #MySQL SELECT statement fo the Ingredients
-    results = query("SELECT Recipe_Ingredients.Name, Ingredient_Type.Name FROM Recipe_Ingredients "
+    results = query(("SELECT Recipe_Ingredients.Name, Ingredient_Type.Name FROM Recipe_Ingredients "
                    "INNER JOIN Ingredient_Type ON Ingredient_Type.Id = Recipe_Ingredients.IngredientTypeId "
                    "INNER JOIN Recipe ON Recipe_Ingredients.RecipeId = Recipe.Id WHERE Recipe.Title = %s "
-                   "ORDER BY Recipe_Ingredients.IngredientTypeId ASC", (recipe_title)).fetchall()
+                   "ORDER BY Recipe_Ingredients.IngredientTypeId ASC", (recipe_title))).fetchall()
 
 
     #Store the ingredients and ingredient types in their respective arrays
@@ -125,9 +125,9 @@ def read_recipe(recipe_title):
         ingredient_types.append(row[1])
 
     #MySQL SELECT statement for the instructions
-    results = query("SELECT Instruction FROM Recipe_Instructions "
+    results = query(("SELECT Instruction FROM Recipe_Instructions "
                    "INNER JOIN Recipe ON Recipe_Instructions.RecipeId = Recipe.Id "
-                   "WHERE Recipe.Title = %s ORDER BY Recipe_Instructions.StepNumber ASC", (recipe_title)).fetchall()
+                   "WHERE Recipe.Title = %s ORDER BY Recipe_Instructions.StepNumber ASC", (recipe_title))).fetchall()
 
 
     #Put the instructions into the instructions array
@@ -144,7 +144,7 @@ def recipes():
     user_input = request.args.get("search")
 
     #Get recipe titles that contain the query
-    results = query("SELECT Title FROM Recipe WHERE Title LIKE %s", ('%' + user_input + '%')).fetchall()
+    results = query(("SELECT Title FROM Recipe WHERE Title LIKE %s", ('%' + user_input + '%'))).fetchall()
 
 
     #Render the list of results
