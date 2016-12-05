@@ -1,32 +1,35 @@
 {% extends "layout.html" %}
 {% block content %}
-
+    <!-- container div -->
     <div class="container-fluid">
+        <!-- Jumbotron for the name of the project, Recipe Sesame -->
         <div class="jumbotron text-center">
             <h1 id="title">Recipe Sesame</h1>
             <p>This is a site of recipes used/curated by the great Kira Dawn Jones. <b>Caution:</b> recipes will be delicious and may cause great satisfaction!</p>
         </div>
+
+        <!-- Search bar row -->
         <div class="row">
-            <div class="col-md-4"></div>
+            <div class="col-md-4"></div> <!-- Spacer div -->
+            <!-- The content div for the search bar, sends the user input to the recipes view method -->
             <div class="col-md-4 text-center" id="search_div">
                 <form method="get" action="{{ url_for('recipes') }}">
                     <input class="form-control" id="search_box" type="text" name="search" placeholder="Peanut Butter Jelly">
                 </form>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4"></div> <!-- Spacer div -->
         </div>
+
+        <!-- Content area for up to 10 links of recipes -->
         <div class="row">
-            <div class="col-md-3"></div>
+            <div class="col-md-3"></div> <!-- Spacer div -->
+            <!-- Make buttons for each recipe with the link to it's page -->
             <div class="col-md-6 text-center top_offset20">
                 {% for row in results %}
                     <a class="btn btn-default btn-lg" href="/read_recipe/{{ row[0] }}" role="button">{{ row[0] }}</a>
                 {% endfor %}
             </div>
-            <div class="col-md-3"></div>
-
-
-
-
+            <div class="col-md-3"></div> <!-- Spacer div -->
         </div>
     </div>
 {% endblock %}

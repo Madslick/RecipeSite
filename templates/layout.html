@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ Title }}</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
+    <head>
+        <!-- Meta tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Title specified by the view methods -->
+        <title>{{ Title }}</title>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Link in the CSS -->
+        <!-- My added CSS -->
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
+        <!-- Latest compiled and minified CSS for bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme for bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+        <!-- Link in JQuery and Javascript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="header clearfix top_offset10">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" {% if home == True %} class="active" {% endif %}><a href="{{ url_for('main') }}">Home</a></li>
-                <li role="presentation" {% if home == False %} class="active" {% endif %}><a href="/input_recipe">Add a recipe</a></li>
-            </ul>
-        </nav>
-        <h3 class="text-muted">Auby Damned Productions</h3>
-        <hr>
-    </div>
-    <div class="canvas">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-        {% for message in messages %}
-            <li>{{ message }} </li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-
-
-    {% block content %}{% endblock %}
-    </div>
-    <script src="/static/js/switch_active_tab.js"></script>
-</body>
+    <body>
+        <!-- The navbar -->
+        <div class="header top_offset10">
+            <nav>
+                <!-- There's 2 nav pills, Home and Add a Recipe -->
+                <ul class="nav nav-pills pull-right">
+                    <!-- The python makes the right li element the active -->
+                    <li role="presentation" {% if home == True %} class="active" {% endif %}><a href="{{ url_for('main') }}">Home</a></li>
+                    <li role="presentation" {% if home == False %} class="active" {% endif %}><a href="/input_recipe">Add a recipe</a></li>
+                </ul>
+            </nav>
+            <!-- The Brand -->
+            <h3 class="text-muted">Auby Damned Productions</h3>
+            <hr>
+        </div>
+        <!-- The child pages content -->
+        {% block content %}{% endblock %}
+        </div>
+    </body>
 </html>

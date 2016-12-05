@@ -1,35 +1,42 @@
 {% extends "layout.html" %}
 {% block content %}
-
+    <!-- Container div -->
     <div class="container">
-
+        <!-- jumbotron instructing user to Write up a Recipe! -->
         <div class="jumbotron text-center">
             <h1>Write up a Recipe!</h1>
         </div>
 
+        <!-- Form that passes all the user input to the controller method insert_recipe -->
         <form method="POST" class="form-horizontal" action="{{ url_for('insert_recipe') }}">
-
+            <!-- Form input for the recipe title -->
             <div class="form-group col-sm-10">
                 <label class="col-sm-2">Title</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" name="title" placeholder="Filet Mignon" maxlength="50"/>
                 </div>
             </div>
+            <!-- Leave 2 columns of space to stay in line with the rest of the page -->
             <div class="col-sm-2"></div>
-
+            <!-- A div to do the horizontal visual line break -->
             <div class="col-sm-12">
                 <hr>
             </div>
 
+            <!-- Div group for the ingredients -->
             <div class="form-group col-sm-10" id="ingredients">
+                <!-- Label stating Ingredients -->
                 <label class="col-sm-2">Ingredients:</label>
-
+                <!-- Div for the ingredient, ingredient type, spans keep them in same line -->
                 <div class="col-sm-10">
-
+                    <!-- Span for the ingredient input -->
                     <span class="input-group-btn">
+                        <!-- User input for the ingredient -->
                         <input type="text" class="form-control" name="ingredient0" placeholder="3 cups of Tofu" maxlength="180"/>
                     </span>
+                    <!-- Span for the ingredient type input -->
                     <span class="input-group-btn">
+                        <!-- Select option for which ingredient type -->
                         <select class="form-control" name="ingr_type0">
                             <option value="1">Proteins</option>
                             <option value="2">Grains/Rice</option>
@@ -41,25 +48,29 @@
                     </span>
                 </div>
             </div>
+            <!-- Div for the add ingredient button -->
             <div class="col-sm-2">
                     <button class="btn btn-primary" type="button" onclick="add_ingredient(); setIngredientFocus();">Add Ingredient</button>
             </div>
-
+            <!-- A div to do the horizontal visual line break -->
             <div class="col-sm-12">
                 <hr>
             </div>
 
+            <!-- Div for the instructions -->
             <div class="form-group col-sm-10" id="instructions">
                 <label class="col-sm-2">Instructions:</label>
+                <!-- Input for the first instruction, maxlength of 400 character -->
                 <div class="col-sm-10">
                     <input class="form-control" type="text" name="instruction0" maxlength="400"/>
                 </div>
             </div>
-
+            <!-- Div for the Add Instruction button -->
             <div class="col-sm-2">
                 <button class="btn btn-primary" type="button" onclick="add_instruction(); setInstructionFocus();">Add Instruction</button>
             </div>
 
+            <!-- Button to submit the recipe to the inser_recipe controller method which adds the data to the database -->
             <div class="col-sm-12">
                 <br>
                 <button class="btn btn-success" type="submit">Add Recipe</button>
@@ -67,5 +78,6 @@
         </form>
     </div>
 
+    <!-- javascript to add input elements for ingredients and instructions -->
     <script src="/static/js/add_inputs.js"></script>
 {% endblock %}
