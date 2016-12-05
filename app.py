@@ -5,6 +5,7 @@ from flaskext.mysql import MySQL
 #Initialize the app
 app = Flask(__name__)
 
+
 #Configure the app with the info to connect to the database
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -18,9 +19,14 @@ conn = mysql.connect()
 cursor = conn.cursor()
 
 def connect():
+    global conn
+    global cursor
     conn = mysql.connect()
     cursor = conn.cursor()
 def query(sql):
+    global conn
+    global cursor
+
     try:
         cursor = conn.cursor()
         cursor.execute(sql)
@@ -45,6 +51,9 @@ def input_recipe():
 #Input Recipe calls this method to insert the new recipe
 @app.route("/insert_recipe", methods=["POST", "GET"])
 def insert_recipe():
+    global conn
+    global cursor
+
     #Get the Title of the recipe
     title = request.form['title']
 
@@ -77,7 +86,7 @@ def insert_recipe():
         instructions.append(request.form['instruction' + str(i)])
 
     #Start the insertion of the title to the database
-    query(("INSERT INTO Recipe (Title) VALUES (%s)", (title)))
+    query("INSERT INTO Recipe (Title) VALUES ('%s')" % (title))
     conn.commit()
 
     #Get the Primary key of the Recipe table row to link the ingredient and instruction rows
@@ -107,27 +116,33 @@ def insert_recipe():
 #Page for the individual recipes
 @app.route("/read_recipe/<string:recipe_title>", methods=['GET'])
 def read_recipe(recipe_title):
+    global conn
+    global cursor
+
     #Instantiate the arrays used to display the recipe
     ingredients = []
     ingredient_types = []
     instructions = []
 
     #MySQL SELECT statement fo the Ingredients
-    results = query(("SELECT Recipe_Ingredients.Name, Ingredient_Type.Name FROM Recipe_Ingredients "
-                   "INNER JOIN Ingredient_Type ON Ingredient_Type.Id = Recipe_Ingredients.IngredientTypeId "
-                   "INNER JOIN Recipe ON Recipe_Ingredients.RecipeId = Recipe.Id WHERE Recipe.Title = %s "
-                   "ORDER BY Recipe_Ingredients.IngredientTypeId ASC", (recipe_title))).fetchall()
+    command = 'SELECT Recipe_Ingredients.Name, Ingredient_Type.Name FROM Recipe_Ingredients \
+INNER JOIN Ingredient_Type ON Ingredient_Type.Id = Recipe_Ingredients.IngredientTypeId \
+INNER JOIN Recipe ON Recipe_Ingredients.RecipeId = Recipe.Id WHERE Recipe.Title = "%s" \
+ORDER BY Recipe_Ingredients.IngredientTypeId ASC' % (recipe_title)
+
+    print command
+    results = query(sql=command).fetchall()
 
 
     #Store the ingredients and ingredient types in their respective arrays
     for row in results:
         ingredients.append(row[0])
         ingredient_types.append(row[1])
-
+    command = 'SELECT Instruction FROM Recipe_Instructions \
+INNER JOIN Recipe ON Recipe_Instructions.RecipeId = Recipe.Id \
+WHERE Recipe.Title = "%s" ORDER BY Recipe_Instructions.StepNumber ASC' % (recipe_title)
     #MySQL SELECT statement for the instructions
-    results = query(("SELECT Instruction FROM Recipe_Instructions "
-                   "INNER JOIN Recipe ON Recipe_Instructions.RecipeId = Recipe.Id "
-                   "WHERE Recipe.Title = %s ORDER BY Recipe_Instructions.StepNumber ASC", (recipe_title))).fetchall()
+    results = query(sql=command).fetchall()
 
 
     #Put the instructions into the instructions array
@@ -143,9 +158,9 @@ def recipes():
     #Get the user input
     user_input = request.args.get("search")
 
+    command = 'SELECT Title FROM Recipe WHERE Title LIKE %s', ('%' + user_input + '%')
     #Get recipe titles that contain the query
-    results = query(("SELECT Title FROM Recipe WHERE Title LIKE %s", ('%' + user_input + '%'))).fetchall()
-
+    results = query(sql=command).fetchall()
 
     #Render the list of results
     return render_template("recipe.html", Title="Kira's Recipes", home=True, query=user_input, results=results)
